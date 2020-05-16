@@ -21,22 +21,10 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #303030;
-  width: 99%;
+  width: 100%;
 }
 
 /* The grid: Three equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
-  text-align: center;
-  font-size: 25px;
-  cursor: pointer;
-  color: white;
-  border-right: 3px solid #7a0101;
-  border-left: 3px solid #7a0101;
-  letter-spacing: 4px;
-}
 
 .containerTab {
   padding: 20px;
@@ -58,9 +46,17 @@ body {
   cursor: pointer;
 }
 
+.navbar {
+  background-color: black;
+  border: 3px solid #7a0101;
+  color: white;
+  font-size: 30px;
+  letter-spacing: 4px;
+}
+
 .scrollabletextbox {
     height:450px;
-    width:1100px;
+    width:80%;
     font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
     font-size: 20px;
     overflow:scroll;
@@ -69,10 +65,16 @@ body {
 
 .scrollabletextbox2 {
     height:450px;
-    width:1100px;
+    width:80%;
     font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
     font-size: 25px;
     color: white;
+}
+
+li {
+
+  color: white;
+  font-size: 20px;
 }
 
 </style>
@@ -87,6 +89,7 @@ body {
 #customers td, #customers th {
   border: 1px solid #ddd;
   padding: 8px;
+  font-size: 80%;
 }
 
 #customers tr:nth-child(even){background-color: black;}
@@ -109,17 +112,29 @@ body {
 </div> -->
 
 <!-- Three columns -->
-<div class="row">
-  <div class="column btn-primary" onclick="openTab('b1');" style="background-color: black ;" >
-    INPUT TEXT
-  </div>
-  <div class="column btn-success" onclick="openTab('b2');" style="background-color: black ;">
-    ONTOLOGY
-  </div>
-  <div class="column btn-warning" onclick="openTab('b3');" style="background-color: black ;">
-    SUMMARY
-  </div>
-</div>
+<nav class="navbar navbar-default navbar-dark bg-dark" role="navigation">
+        <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand navbar-brand-centered" style="font-size: 25px;">Text Summarizer</div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-brand-centered">
+          <ul class="nav navbar-nav navbar-right">
+            <li onclick="openTab('b1')" ><a href="#">INPUT TEXT</a></li>
+            <li onclick="openTab('b2')" ><a href="#">ONTOLOGY</a></li>
+            <li onclick="openTab('b3')" ><a href="#">SUMMARY</a></li>          
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
 <!-- Full-width columns: (hidden by default) -->
 <div id="b1" class="containerTab" style="display:none;background:#303030">
@@ -127,11 +142,7 @@ body {
   <center><h2>INPUT TEXT</h2></center>
   <center>
       
-      <textarea placeholder="Enter Text To Be Summarized" id="input_text" class="scrollabletextbox"  name="note" style="background-color: black; color: #d9be6f;">
-
-        Enter Text To Be Summarized...
-        
-        </textarea>
+      <textarea placeholder="Enter Text To Be Summarized" id="input_text" class="scrollabletextbox"  name="note" style="background-color: black; color: #d9be6f;padding:15px;">Enter Text To Be Summarized...</textarea>
         <br>
         <br>
         <div id="sumbtn" onclick="summarize()" class="btn-primary" style="max-width: 180px; height: 50px; padding: 3px; cursor: pointer; background-color: black;border: 2px solid #7a0101; letter-spacing: 4px">
@@ -149,11 +160,7 @@ body {
   
  
 <center>
-          <pre id="xml_code" class="prettyprint scrollabletextbox" style="background-color: black; text-align: left; font-size: 15px; width: 1100px;">
-
-            Ontology Will Be Displayed Here...
-            
-     </pre>
+          <pre id="xml_code" class="prettyprint scrollabletextbox" style="background-color: black; text-align: left; font-size: 15px;">Ontology Will Be Displayed Here...</pre>
 </center>
 
 
@@ -201,7 +208,7 @@ function summarize($this){
     var input_text = document.getElementById("input_text").value;
 
     var btn = document.getElementById('sumbtn')
-    var loading = '<h4 class="fa fa-spinner fa-spin"></h4>'
+    var loading = '<h5 class="fa fa-spinner fa-spin"></h5>'
    
     btn.innerHTML = loading;
 
