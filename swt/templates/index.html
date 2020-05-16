@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Summarizer</title>
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=html&amp;skin=sunburst"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #303030;
+  width: 99%;
+}
+
+/* The grid: Three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+  border-right: 3px solid #7a0101;
+  border-left: 3px solid #7a0101;
+  letter-spacing: 4px;
+}
+
+.containerTab {
+  padding: 20px;
+  color: white;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Closable button inside the container tab */
+.closebtn {
+  float: right;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.scrollabletextbox {
+    height:450px;
+    width:1100px;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    overflow:scroll;
+    color: white;
+}
+
+.scrollabletextbox2 {
+    height:450px;
+    width:1100px;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color: white;
+}
+
+</style>
+
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: black;}
+
+#customers tr:hover {background-color: #ddd;color: black;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: white;
+  color: black;
+}
+</style>
+</head>
+<body onload="openTab('b1')">
+
+<!-- <div style="text-align:center">
+  <b><h1>Text Summarizer</h1></b>
+</div> -->
+
+<!-- Three columns -->
+<div class="row">
+  <div class="column btn-primary" onclick="openTab('b1');" style="background-color: black ;" >
+    INPUT TEXT
+  </div>
+  <div class="column btn-success" onclick="openTab('b2');" style="background-color: black ;">
+    ONTOLOGY
+  </div>
+  <div class="column btn-warning" onclick="openTab('b3');" style="background-color: black ;">
+    SUMMARY
+  </div>
+</div>
+
+<!-- Full-width columns: (hidden by default) -->
+<div id="b1" class="containerTab" style="display:none;background:#303030">
+  
+  <center><h2>INPUT TEXT</h2></center>
+  <center>
+      
+      <textarea placeholder="Enter Text To Be Summarized" id="input_text" class="scrollabletextbox"  name="note" style="background-color: black; color: #d9be6f;">
+
+        Enter Text To Be Summarized...
+        
+        </textarea>
+        <br>
+        <br>
+        <div id="sumbtn" onclick="summarize()" class="btn-primary" style="max-width: 180px; height: 50px; padding: 3px; cursor: pointer; background-color: black;border: 2px solid #7a0101; letter-spacing: 4px">
+            <h4>SUMMARIZE</h4>
+        </div>
+
+<!-- onclick="location.href='{% url 'summarize' %}'" -->
+
+  </center>
+</div>
+
+<div id="b2" class="containerTab" style="display:none;background:#303030">
+ 
+  <center><h2>ONTOLOGY</h2></center>
+  
+ 
+<center>
+          <pre id="xml_code" class="prettyprint scrollabletextbox" style="background-color: black; text-align: left; font-size: 15px; width: 1100px;">
+
+            Ontology Will Be Displayed Here...
+            
+     </pre>
+</center>
+
+
+
+</div>
+
+<div id="b3" class="containerTab" style="display:none;background:#303030">
+ 
+  <center><h2>SUMMARY</h2></center>
+  
+  <center>
+      
+      <div class="scrollabletextbox2">
+
+        <table id="customers">
+<thead><tr><th title="Field #1">Sentence</th>
+<th title="Field #2">Score</th>
+</tr></thead>
+<tbody id="sent_table">
+
+
+
+</tbody></table>
+          
+      </div>
+
+  </center>
+
+<div class="invisible" id="csrf">{{csrf_token}}</div>
+</div>
+
+<script>
+var csrftoken = document.getElementById("csrf").innerHTML ;
+function openTab(tabName) {
+  var i, x;
+  x = document.getElementsByClassName("containerTab");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(tabName).style.display = "block";
+}
+
+function summarize($this){
+
+    var input_text = document.getElementById("input_text").value;
+
+    var btn = document.getElementById('sumbtn')
+    var loading = '<h4 class="fa fa-spinner fa-spin"></h4>'
+   
+    btn.innerHTML = loading;
+
+    $.ajax({
+        method: 'POST',
+        url: 'summarize',
+        data: {'input_text': input_text,"csrfmiddlewaretoken" : csrftoken},
+        success: function (data) {
+             setResult(data);
+             btn.innerHTML = '<h4>SUMMARIZE</h4>';
+             openTab('b3');
+        },
+        error: function (data) {
+             alert("Encountered an error .. ..");
+        }
+    });
+}
+
+function setResult(data){
+
+    var sent = data['sent'];
+    var score = data['score'];
+    var onto = data['ontology'];
+    var data = data['data'];
+
+    console.log(onto);
+
+    if (data === undefined || data.length == 0) {
+    var input_text = document.getElementById("input_text");
+    input_text.textContent = " Enter Text Here ... ";
+  }
+  else {
+    var input_text = document.getElementById("input_text");
+    input_text.textContent = data[0];
+  }
+
+  if (onto === undefined || onto.length == 0) {
+     var xml_code = document.getElementById("xml_code");
+    xml_code.textContent = "  Ontology Will Be Displayed Here ...  ";
+  }
+  else {
+    var xml_code = document.getElementById("xml_code");
+    xml_code.textContent = onto[0];
+  }
+
+  if (sent === undefined || sent.length == 0) {
+    
+  }
+  else {
+    var ele = document.getElementById("sent_table");
+    for(var i=0;i<8;i++)
+    {
+      var content = ele.innerHTML;
+      var temp = '  <tr>\
+    <td align="left">'+sent[i]+'</td>\
+    <td align="center">'+score[i]+'</td>\
+  </tr>';
+
+            content = content+temp;
+            ele.innerHTML = content;
+    }
+    
+
+  }
+
+}
+
+
+</script>
+
+</body>
+</html> 

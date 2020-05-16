@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://test.org/onto.owl"
+         xmlns="http://test.org/onto.owl#">
+
+<owl:Ontology rdf:about="http://test.org/onto.owl"/>
+
+<owl:Class rdf:about="#N_Token">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#in">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#diploma">
+  <rdfs:subClassOf rdf:resource="#in"/>
+</owl:Class>
+
+<owl:Class rdf:about="#addition">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#nearly">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#84">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#medical">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#of">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+  <rdfs:subClassOf rdf:resource="#number"/>
+  <rdfs:subClassOf rdf:resource="#unavailability"/>
+  <rdfs:subClassOf rdf:resource="#most"/>
+</owl:Class>
+
+<owl:Class rdf:about="#mbbs">
+  <rdfs:subClassOf rdf:resource="#of"/>
+</owl:Class>
+
+<owl:Class rdf:about="#students">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+  <rdfs:subClassOf rdf:resource="#of"/>
+</owl:Class>
+
+<owl:Class rdf:about="#the">
+  <rdfs:subClassOf rdf:resource="#students"/>
+  <rdfs:subClassOf rdf:resource="#choice"/>
+</owl:Class>
+
+<owl:Class rdf:about="#postgraduate">
+  <rdfs:subClassOf rdf:resource="#students"/>
+</owl:Class>
+
+<owl:Class rdf:about="#medicine">
+  <rdfs:subClassOf rdf:resource="#of"/>
+</owl:Class>
+
+<owl:Class rdf:about="#venereology">
+  <rdfs:subClassOf rdf:resource="#in"/>
+</owl:Class>
+
+<owl:Class rdf:about="#and">
+  <rdfs:subClassOf rdf:resource="#venereology"/>
+</owl:Class>
+
+<owl:Class rdf:about="#leprosy">
+  <rdfs:subClassOf rdf:resource="#venereology"/>
+</owl:Class>
+
+<owl:Class rdf:about="#dermatology">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#to">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+  <rdfs:subClassOf rdf:resource="#purchase"/>
+  <rdfs:subClassOf rdf:resource="#spend"/>
+  <rdfs:subClassOf rdf:resource="#search"/>
+</owl:Class>
+
+<owl:Class rdf:about="#this">
+  <rdfs:subClassOf rdf:resource="#to"/>
+</owl:Class>
+
+<owl:Class rdf:about="#27">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#board">
+  <rdfs:subClassOf rdf:resource="#of"/>
+</owl:Class>
+
+<owl:Class rdf:about="#national">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#situation">
+  <rdfs:subClassOf rdf:resource="#in"/>
+</owl:Class>
+
+<owl:Class rdf:about="#on">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+  <rdfs:subClassOf rdf:resource="#spend"/>
+</owl:Class>
+
+<owl:Class rdf:about="#comparing">
+  <rdfs:subClassOf rdf:resource="#on"/>
+</owl:Class>
+
+<owl:Class rdf:about="#journals">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+  <rdfs:subClassOf rdf:resource="#of"/>
+  <rdfs:subClassOf rdf:resource="#purchase"/>
+  <rdfs:subClassOf rdf:resource="#on"/>
+</owl:Class>
+
+<owl:Class rdf:about="#with">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#number">
+  <rdfs:subClassOf rdf:resource="#with"/>
+  <rdfs:subClassOf rdf:resource="#for"/>
+</owl:Class>
+
+<owl:Class rdf:about="#publication">
+  <rdfs:subClassOf rdf:resource="#of"/>
+</owl:Class>
+
+<owl:Class rdf:about="#text">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#full">
+  <rdfs:subClassOf rdf:resource="#text"/>
+</owl:Class>
+
+<owl:Class rdf:about="#mediocre">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#unavailability">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#cause">
+  <rdfs:subClassOf rdf:resource="#of"/>
+</owl:Class>
+
+<owl:Class rdf:about="#responsible">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#for">
+  <rdfs:subClassOf rdf:resource="#responsible"/>
+  <rdfs:subClassOf rdf:resource="#choice"/>
+  <rdfs:subClassOf rdf:resource="#come"/>
+</owl:Class>
+
+<owl:Class rdf:about="#relatively">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#dissertation">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+  <rdfs:subClassOf rdf:resource="#for"/>
+</owl:Class>
+
+<owl:Class rdf:about="#their">
+  <rdfs:subClassOf rdf:resource="#dissertation"/>
+</owl:Class>
+
+<owl:Class rdf:about="#research">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#articles">
+  <rdfs:subClassOf rdf:resource="#of"/>
+  <rdfs:subClassOf rdf:resource="#journals"/>
+  <rdfs:subClassOf rdf:resource="#come"/>
+  <rdfs:subClassOf rdf:resource="#search"/>
+</owl:Class>
+
+<owl:Class rdf:about="#published">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#by">
+  <rdfs:subClassOf rdf:resource="#published"/>
+</owl:Class>
+
+<owl:Class rdf:about="#paid">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#works">
+  <rdfs:subClassOf rdf:resource="#paid"/>
+</owl:Class>
+
+<owl:Class rdf:about="#are">
+  <rdfs:subClassOf rdf:resource="#paid"/>
+</owl:Class>
+
+<owl:Class rdf:about="#most">
+  <rdfs:subClassOf rdf:resource="#by"/>
+</owl:Class>
+
+<owl:Class rdf:about="#familiar">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#about">
+  <rdfs:subClassOf rdf:resource="#familiar"/>
+</owl:Class>
+
+<owl:Class rdf:about="#these">
+  <rdfs:subClassOf rdf:resource="#journals"/>
+  <rdfs:subClassOf rdf:resource="#articles"/>
+</owl:Class>
+
+<owl:Class rdf:about="#cost">
+  <rdfs:subClassOf rdf:resource="#journals"/>
+</owl:Class>
+
+<owl:Class rdf:about="#or">
+  <rdfs:subClassOf rdf:resource="#journals"/>
+</owl:Class>
+
+<owl:Class rdf:about="#purchase">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#high">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#many">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#spend">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#money">
+  <rdfs:subClassOf rdf:resource="#spend"/>
+</owl:Class>
+
+<owl:Class rdf:about="#choice">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#first">
+  <rdfs:subClassOf rdf:resource="#choice"/>
+</owl:Class>
+
+<owl:Class rdf:about="#situations">
+  <rdfs:subClassOf rdf:resource="#of"/>
+</owl:Class>
+
+<owl:Class rdf:about="#come">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#where">
+  <rdfs:subClassOf rdf:resource="#come"/>
+</owl:Class>
+
+<owl:Class rdf:about="#rescue">
+  <rdfs:subClassOf rdf:resource="#for"/>
+</owl:Class>
+
+<owl:Class rdf:about="#search">
+  <rdfs:subClassOf rdf:resource="#about"/>
+</owl:Class>
+
+<owl:Class rdf:about="#how">
+  <rdfs:subClassOf rdf:resource="#search"/>
+</owl:Class>
+
+<owl:Class rdf:about="#...">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+<owl:Class rdf:about="#be">
+  <rdfs:subClassOf rdf:resource="#N_Token"/>
+</owl:Class>
+
+
+</rdf:RDF>
